@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SikafroLoan — Smart Lending for Ghanaians</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div id="toast-container"></div>
+
+<!-- ===================== LANDING PAGE ===================== -->
+<div id="page-landing" class="page">
+  <nav class="landing-nav">
+    <div class="landing-logo">
+      <div class="icon-wrapper">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      </div>
+      <span class="nav-brand">SikafroLoan</span>
+    </div>
+    <div class="nav-links">
+  <button class="link-btn" onclick="scrollTo_('#rates')">Rates</button>
+  <button class="link-btn" onclick="scrollTo_('#how')">How it works</button>
+  <button class="link-btn" onclick="scrollTo_('#testimonials')">Reviews</button>
+  <button class="btn-secondary" onclick="navigate('login')">Sign In</button>
+  <button class="btn-primary" onclick="navigate('register')">Get Started</button>
+</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button class="icon-btn landing-dark-btn" onclick="toggleDark()" title="Toggle dark mode">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="mobile-menu-btn" onclick="toggleLandingMenu()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div id="landing-mobile-menu" class="landing-mobile-menu hidden">
+    <button class="link-btn" onclick="scrollTo_('#rates');toggleLandingMenu()">Rates</button>
+    <button class="link-btn" onclick="scrollTo_('#how');toggleLandingMenu()">How it works</button>
+    <button class="link-btn" onclick="scrollTo_('#testimonials');toggleLandingMenu()">Reviews</button>
+    <button class="btn-secondary full-width" onclick="navigate('login')">Sign In</button>
+    <button class="btn-primary full-width" onclick="navigate('register')">Get Started</button>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Ghana's Fastest Growing Lender</div>
+      <h1 class="hero-title">Sika a wo hia no,<br/><span class="hero-accent">yen de aba</span></h1>
+      <p class="hero-sub">Get personal, business, home and education loans approved in 24 hours. No hidden fees. No stress. Built for Ghanaians.</p>
+      <div class="hero-actions">
+        <button class="btn-primary hero-btn" onclick="navigate('register')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Apply Now
+        </button>
+        <button class="btn-secondary hero-btn" onclick="navigate('calculator-public')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/></svg>
+          Calculate EMI
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><p class="hero-stat-val">GHS 2B+</p><p class="hero-stat-label">Disbursed</p></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><p class="hero-stat-val">180K+</p><p class="hero-stat-label">Customers</p></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><p class="hero-stat-val">24hrs</p><p class="hero-stat-label">Approval</p></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><p class="hero-stat-val">10+</p><p class="hero-stat-label">Regions</p></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card card">
+        <div class="hcard-header">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="icon-wrapper"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+            <div><p class="bold" style="font-size:13px">SikafroLoan</p><p class="muted" style="font-size:11px">Personal Loan</p></div>
+          </div>
+          <span class="badge badge-approved">Approved</span>
+        </div>
+        <div class="card-divider"></div>
+        <div style="padding:16px">
+          <p class="muted" style="font-size:12px;margin-bottom:4px">Loan Amount</p>
+          <p style="font-size:28px;font-weight:800;color:var(--bold)">GHS 15,000</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+            <div class="mini-stat"><p class="muted" style="font-size:11px">Monthly</p><p class="bold" style="font-size:14px">GHS 720</p></div>
+            <div class="mini-stat"><p class="muted" style="font-size:11px">Rate</p><p class="bold" style="font-size:14px">24% p.a.</p></div>
+            <div class="mini-stat"><p class="muted" style="font-size:11px">Tenure</p><p class="bold" style="font-size:14px">24 months</p></div>
+            <div class="mini-stat"><p class="muted" style="font-size:11px">Status</p><p style="font-size:14px;font-weight:700;color:#22c55e">Disbursed</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOAN PRODUCTS -->
+  <section class="landing-section" id="rates">
+    <div class="section-label">Loan Products</div>
+    <h2 class="section-heading">Choose what works for you</h2>
+    <p class="section-sub muted">Competitive rates designed for every Ghanaian — salaried, self-employed, trader or farmer.</p>
+    <div class="products-grid">
+      <div class="product-card card">
+        <div class="product-icon icon-wrapper"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3 class="product-name">Personal Loan</h3>
+        <p class="muted product-desc">Medical bills, rent, family needs — fast and flexible</p>
+        <p class="product-rate">From <strong>24%</strong> p.a.</p>
+        <p class="product-range muted">GHS 500 – GHS 50,000</p>
+        <button class="btn-primary full-width" onclick="navigate('register')">Apply Now</button>
+      </div>
+      <div class="product-card card">
+        <div class="product-icon icon-wrapper"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <h3 class="product-name">Business Loan</h3>
+        <p class="muted product-desc">Stock, expansion, equipment — grow your business</p>
+        <p class="product-rate">From <strong>28%</strong> p.a.</p>
+        <p class="product-range muted">GHS 1,000 – GHS 500,000</p>
+        <button class="btn-primary full-width" onclick="navigate('register')">Apply Now</button>
+      </div>
+      <div class="product-card card">
+        <div class="product-icon icon-wrapper"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3 class="product-name">Home Loan</h3>
+        <p class="muted product-desc">Build, buy or renovate — your dream home awaits</p>
+        <p class="product-rate">From <strong>18%</strong> p.a.</p>
+        <p class="product-range muted">GHS 10,000 – GHS 1,000,000</p>
+        <button class="btn-primary full-width" onclick="navigate('register')">Apply Now</button>
+      </div>
+      <div class="product-card card">
+        <div class="product-icon icon-wrapper"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <h3 class="product-name">Education Loan</h3>
+        <p class="muted product-desc">University, polytechnic, professional courses</p>
+        <p class="product-rate">From <strong>16%</strong> p.a.</p>
+        <p class="product-range muted">GHS 500 – GHS 80,000</p>
+        <button class="btn-primary full-width" onclick="navigate('register')">Apply Now</button>
+      </div>
+      <div class="product-card card">
+        <div class="product-icon icon-wrapper"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3 class="product-name">Car Loan</h3>
+        <p class="muted product-desc">New or used vehicle — drive it home today</p>
+        <p class="product-rate">From <strong>20%</strong> p.a.</p>
+        <p class="product-range muted">GHS 5,000 – GHS 300,000</p>
+        <button class="btn-primary full-width" onclick="navigate('register')">Apply Now</button>
+      </div>
+      <div class="product-card card">
+        <div class="product-icon icon-wrapper"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3 class="product-name">Emergency Loan</h3>
+        <p class="muted product-desc">Urgent cash in hours — no long paperwork</p>
+        <p class="product-rate">From <strong>30%</strong> p.a.</p>
+        <p class="product-range muted">GHS 200 – GHS 10,000</p>
+        <button class="btn-primary full-width" onclick="navigate('register')">Apply Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="landing-section alt-bg" id="how">
+    <div class="section-label">Process</div>
+    <h2 class="section-heading">Get funded in 3 simple steps</h2>
+    <p class="section-sub muted">No branch visits required. Everything done from your phone.</p>
+    <div class="steps-grid">
+      <div class="how-step">
+        <div class="how-number">01</div>
+        <div class="icon-wrapper how-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div>
+        <h3 class="how-title">Apply Online</h3>
+        <p class="muted how-desc">Fill the 6-step form in under 10 minutes. Upload your Ghana Card photo directly from your phone camera.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-number">02</div>
+        <div class="icon-wrapper how-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h3 class="how-title">Get Approved</h3>
+        <p class="muted how-desc">Our team reviews your application and Ghana Card details within 24 hours. You'll get an SMS notification.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-number">03</div>
+        <div class="icon-wrapper how-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <h3 class="how-title">Receive Money</h3>
+        <p class="muted how-desc">Choose MTN MoMo, Vodafone Cash, AirtelTigo or direct bank transfer. Money hits your account same day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="landing-section">
+    <div class="section-label">Why SikafroLoan</div>
+    <h2 class="section-heading">Built differently, for you</h2>
+    <div class="benefits-grid">
+      <div class="benefit-item"><div class="icon-wrapper"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div><div><p class="bold" style="font-size:14px">No Hidden Charges</p><p class="muted" style="font-size:13px">What you see is what you pay. No processing surprises.</p></div></div>
+      <div class="benefit-item"><div class="icon-wrapper"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div><p class="bold" style="font-size:14px">Bank-Level Security</p><p class="muted" style="font-size:13px">Your data is encrypted and NIA-verified for safety.</p></div></div>
+      <div class="benefit-item"><div class="icon-wrapper"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><p class="bold" style="font-size:14px">24hr Approval</p><p class="muted" style="font-size:13px">Most applications decided within one business day.</p></div></div>
+      <div class="benefit-item"><div class="icon-wrapper"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12z"/></svg></div><div><p class="bold" style="font-size:14px">Local Support</p><p class="muted" style="font-size:13px">Ghanaian team available Mon–Sat 8am–6pm.</p></div></div>
+      <div class="benefit-item"><div class="icon-wrapper"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div><div><p class="bold" style="font-size:14px">Flexible Repayment</p><p class="muted" style="font-size:13px">Choose from 3 to 120 months based on your comfort.</p></div></div>
+      <div class="benefit-item"><div class="icon-wrapper"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><p class="bold" style="font-size:14px">MoMo Disbursement</p><p class="muted" style="font-size:13px">Receive your loan directly to MTN, Vodafone or AirtelTigo.</p></div></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="landing-section alt-bg" id="testimonials">
+    <div class="section-label">Testimonials</div>
+    <h2 class="section-heading">What our customers say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"I applied on Monday morning and had the money in my MTN MoMo by Tuesday afternoon. SikafroLoan saved my trading business during the lean season."</p>
+        <div class="testimonial-author"><div class="t-avatar">AO</div><div><p class="bold" style="font-size:13px">Abena Osei</p><p class="muted" style="font-size:12px">Trader, Kumasi Central Market</p></div></div>
+      </div>
+      <div class="testimonial-card card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"The school fees loan came through before the semester deadline. The process was straightforward — just uploaded my Ghana Card and got approved. Meda ase!"</p>
+        <div class="testimonial-author"><div class="t-avatar">KA</div><div><p class="bold" style="font-size:13px">Kwabena Asante</p><p class="muted" style="font-size:12px">University Lecturer, Accra</p></div></div>
+      </div>
+      <div class="testimonial-card card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"As a seamstress I was worried no bank would give me a loan. SikafroLoan approved me in less than 24 hours. I've recommended it to all my colleagues."</p>
+        <div class="testimonial-author"><div class="t-avatar">EA</div><div><p class="bold" style="font-size:13px">Efua Agyemang</p><p class="muted" style="font-size:12px">Fashion Designer, Takoradi</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <h2 class="cta-title">Ready to get started?</h2>
+    <p class="muted cta-sub">Join over 180,000 Ghanaians who trust SikafroLoan.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px">
+      <button class="btn-primary hero-btn" onclick="navigate('register')">Create Free Account</button>
+      <button class="btn-secondary hero-btn" onclick="navigate('login')">Sign In</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="landing-footer">
+    <div class="footer-logo">
+      <div class="icon-wrapper"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+      <span class="sidebar-brand">SikafroLoan</span>
+    </div>
+    <p class="muted" style="font-size:12px;margin-top:8px">Designed and crafted by Ankamah Johnson</p>
+    <p class="muted" style="font-size:12px;margin-top:4px">© 2025 SikafroLoan Ghana Ltd. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- PUBLIC CALCULATOR -->
+<div id="page-calculator-public" class="page auth-page hidden">
+  <div style="width:100%;max-width:800px;padding:20px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="icon-wrapper"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <span class="sidebar-brand">SikafroLoan</span>
+      </div>
+      <button class="btn-secondary" onclick="navigate('landing')">Back to Home</button>
+    </div>
+    <div class="calc-grid">
+      <div class="card calc-inputs">
+        <div class="card-top"><span class="bold">Loan Calculator</span></div>
+        <div class="card-divider"></div>
+        <div style="padding:20px">
+          <div class="form-group"><label class="form-label">Loan Amount (GHS)</label><input type="number" id="pub-calc-amount" class="form-input" value="5000"/><input type="range" id="pub-calc-amount-range" class="range-input" min="500" max="500000" step="500" value="5000"/></div>
+          <div class="form-group"><label class="form-label">Tenure (Months)</label><input type="number" id="pub-calc-tenure" class="form-input" value="24"/><input type="range" id="pub-calc-tenure-range" class="range-input" min="3" max="120" step="1" value="24"/></div>
+          <div class="form-group"><label class="form-label">Loan Type</label>
+            <select id="pub-calc-type" class="form-input">
+              <option value="24">Personal Loan (24%)</option>
+              <option value="18">Home Loan (18%)</option>
+              <option value="20">Car Loan (20%)</option>
+              <option value="16">Education Loan (16%)</option>
+              <option value="28">Business Loan (28%)</option>
+            </select>
+          </div>
+          <button class="btn-primary full-width" onclick="calcPublic()">Calculate</button>
+          <button class="btn-primary full-width" style="margin-top:10px" onclick="navigate('register')">Apply for This Loan</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="bold">Results</span></div>
+        <div class="card-divider"></div>
+        <div class="calc-result-grid">
+          <div class="result-block"><p class="muted result-label">Monthly Payment</p><p class="result-value" id="pub-res-emi">GHS 0</p></div>
+          <div class="result-block"><p class="muted result-label">Total Interest</p><p class="result-value" id="pub-res-interest">GHS 0</p></div>
+          <div class="result-block"><p class="muted result-label">Total Payment</p><p class="result-value" id="pub-res-total">GHS 0</p></div>
+          <div class="result-block"><p class="muted result-label">Principal</p><p class="result-value" id="pub-res-principal">GHS 0</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== AUTH PAGES ===================== -->
+<div id="page-login" class="page auth-page hidden">
+  <div class="auth-card card">
+    <div class="auth-logo">
+      <div class="icon-wrapper"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+      <div><p class="auth-brand">SikafroLoan</p><p class="muted" style="font-size:12px">Smart lending for Ghanaians</p></div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="auth-form">
+      <h2 class="section-title">Welcome back</h2>
+      <p class="muted" style="margin-bottom:20px;font-size:13px">Sign in to your account</p>
+      <div class="form-group"><label class="form-label">Email Address</label><input type="email" id="login-email" class="form-input" placeholder="ankamahjohnson@gmail.com"/></div>
+      <div class="form-group"><label class="form-label">Password</label>
+        <div class="input-icon-wrap"><input type="password" id="login-password" class="form-input" placeholder="Enter your password"/>
+          <button class="input-icon-btn" onclick="togglePassword('login-password')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+        </div>
+      </div>
+      <div class="form-row"><label class="checkbox-label"><input type="checkbox" id="remember-me"/> Remember me</label><button class="link-btn" onclick="navigate('forgot')">Forgot password?</button></div>
+      <button class="btn-primary full-width" onclick="handleLogin()">Sign In</button>
+      <p class="auth-switch">Don't have an account? <button class="link-btn" onclick="navigate('register')">Create one</button></p>
+      <p class="auth-switch" style="margin-top:6px"><button class="link-btn" onclick="navigate('landing')">Back to Home</button></p>
+    </div>
+  </div>
+</div>
+
+<div id="page-register" class="page auth-page hidden">
+  <div class="auth-card card">
+    <div class="auth-logo">
+      <div class="icon-wrapper"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+      <div><p class="auth-brand">SikafroLoan</p><p class="muted" style="font-size:12px">Smart lending for Ghanaians</p></div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="auth-form">
+      <h2 class="section-title">Create account</h2>
+      <p class="muted" style="margin-bottom:20px;font-size:13px">Start your loan journey today</p>
+      <div class="form-row-2">
+        <div class="form-group"><label class="form-label">First Name</label><input type="text" id="reg-firstname" class="form-input" placeholder="Johnson"/></div>
+        <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="reg-lastname" class="form-input" placeholder="Ankamah"/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Email Address</label><input type="email" id="reg-email" class="form-input" placeholder="ankamahjohnson@gmail.com"/></div>
+      <div class="form-group"><label class="form-label">Phone Number</label>
+        <div class="phone-input-wrap"><span class="phone-flag">+233</span><input type="tel" id="reg-phone" class="form-input phone-input" placeholder="024 000 0000"/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Password</label>
+        <div class="input-icon-wrap"><input type="password" id="reg-password" class="form-input" placeholder="Min. 8 characters"/>
+          <button class="input-icon-btn" onclick="togglePassword('reg-password')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">Referral Code <span class="muted">(optional)</span></label><input type="text" id="reg-referral" class="form-input" placeholder="e.g. SKF-KOFI1234"/></div>
+      <button class="btn-primary full-width" onclick="handleRegister()">Send Verification Code</button>
+      <p class="auth-switch">Already have an account? <button class="link-btn" onclick="navigate('login')">Sign in</button></p>
+      <p class="auth-switch" style="margin-top:6px"><button class="link-btn" onclick="navigate('landing')">Back to Home</button></p>
+    </div>
+  </div>
+</div>
+
+<div id="page-otp" class="page auth-page hidden">
+  <div class="auth-card card">
+    <div class="auth-logo">
+      <div class="icon-wrapper"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.28a16 16 0 0 0 5.61 5.61z"/></svg></div>
+      <div><p class="auth-brand">Verify Phone</p><p class="muted" style="font-size:12px">Code sent to your number</p></div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="auth-form">
+      <h2 class="section-title">Enter OTP</h2>
+      <p class="muted" style="margin-bottom:20px;font-size:13px">A 4-digit code was sent to <strong id="otp-phone-display"></strong></p>
+      <div class="otp-inputs">
+        <input type="text" class="otp-box" id="otp-0" maxlength="1" inputmode="numeric" oninput="otpInput(0)" onkeydown="otpKeydown(event,0)"/>
+        <input type="text" class="otp-box" id="otp-1" maxlength="1" inputmode="numeric" oninput="otpInput(1)" onkeydown="otpKeydown(event,1)"/>
+        <input type="text" class="otp-box" id="otp-2" maxlength="1" inputmode="numeric" oninput="otpInput(2)" onkeydown="otpKeydown(event,2)"/>
+        <input type="text" class="otp-box" id="otp-3" maxlength="1" inputmode="numeric" oninput="otpInput(3)" onkeydown="otpKeydown(event,3)"/>
+      </div>
+      <div class="otp-demo-hint card" style="margin:16px 0;padding:12px 14px">
+        <p style="font-size:12px;color:var(--muted)">Demo mode — your code is: <strong id="otp-demo-code" style="color:var(--bold);font-size:15px;letter-spacing:4px"></strong></p>
+      </div>
+      <button class="btn-primary full-width" onclick="verifyOTP()">Verify &amp; Create Account</button>
+      <p class="auth-switch">Didn't receive it? <button class="link-btn" onclick="resendOTP()">Resend code</button></p>
+      <p class="auth-switch" style="margin-top:6px"><button class="link-btn" onclick="navigate('register')">Go back</button></p>
+    </div>
+  </div>
+</div>
+
+<div id="page-forgot" class="page auth-page hidden">
+  <div class="auth-card card">
+    <div class="auth-logo">
+      <div class="icon-wrapper"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <div><p class="auth-brand">SikafroLoan</p><p class="muted" style="font-size:12px">Reset your password</p></div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="auth-form">
+      <h2 class="section-title">Reset password</h2>
+      <p class="muted" style="margin-bottom:20px;font-size:13px">We'll send a reset link to your email</p>
+      <div class="form-group"><label class="form-label">Email Address</label><input type="email" id="forgot-email" class="form-input" placeholder="ankamahjohnson@gmail.com"/></div>
+      <button class="btn-primary full-width" onclick="handleForgot()">Send Reset Link</button>
+      <p class="auth-switch"><button class="link-btn" onclick="navigate('login')">Back to Sign In</button></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== APP SHELL ===================== -->
+<div id="app-shell" class="app-shell hidden">
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-logo">
+      <div class="icon-wrapper"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+      <span class="sidebar-brand">SikafroLoan</span>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-item" data-page="dashboard"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</button>
+      <button class="nav-item" data-page="calculator"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/></svg>Calculator</button>
+      <button class="nav-item" data-page="apply"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>Apply for Loan</button>
+      <button class="nav-item" data-page="myloans"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>My Loans</button>
+      <button class="nav-item" data-page="payments"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Payments</button>
+      <button class="nav-item" data-page="eligibility"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Eligibility</button>
+      <button class="nav-item" data-page="referral"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Refer &amp; Earn</button>
+      <button class="nav-item" data-page="profile"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</button>
+      <button class="nav-item" data-page="support"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Support</button>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="nav-item" onclick="handleLogout()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
+    </div>
+  </aside>
+
+  <div class="topbar">
+    <button class="mobile-menu-btn" onclick="toggleSidebar()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <div class="topbar-title" id="topbar-title">Dashboard</div>
+    <div class="topbar-actions">
+      <button class="icon-btn" onclick="toggleDark()" title="Toggle dark mode"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+      <button class="icon-btn" onclick="toggleNotifications()" style="position:relative"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="notif-badge" id="notif-badge">3</span></button>
+      <div class="topbar-user" onclick="navigate('profile')"><div class="user-avatar" id="topbar-avatar">K</div><span id="topbar-name">Kofi</span></div>
+    </div>
+  </div>
+
+  <div id="notif-panel" class="notif-panel hidden">
+    <div class="notif-panel-header"><span class="bold">Notifications</span><button class="link-btn" onclick="clearNotifications()">Clear all</button></div>
+    <div id="notif-list"></div>
+  </div>
+
+  <main class="main-content">
+
+    <!-- DASHBOARD -->
+    <section id="page-dashboard" class="inner-page hidden">
+      <div class="page-header">
+        <div><h1 class="page-title" id="dash-greeting">Good morning, Kofi</h1><p class="muted">Here's your financial overview</p></div>
+        <button class="btn-primary" onclick="navigate('apply')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Apply for Loan</button>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card card"><div class="stat-header"><span class="stat-label muted">Total Borrowed</span><div class="icon-wrapper"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div></div><p class="stat-value" id="stat-borrowed">GHS 0</p><p class="stat-sub muted">Across all loans</p></div>
+        <div class="stat-card card"><div class="stat-header"><span class="stat-label muted">Outstanding</span><div class="icon-wrapper"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div></div><p class="stat-value" id="stat-outstanding">GHS 0</p><p class="stat-sub muted">Balance remaining</p></div>
+        <div class="stat-card card"><div class="stat-header"><span class="stat-label muted">Next Payment</span><div class="icon-wrapper"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div></div><p class="stat-value" id="stat-emi">GHS 0</p><p class="stat-sub muted" id="stat-emi-date">No active loans</p></div>
+        <div class="stat-card card"><div class="stat-header"><span class="stat-label muted">Credit Score</span><div class="icon-wrapper"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div><p class="stat-value" id="stat-credit">720</p><p class="stat-sub" id="stat-credit-label" style="color:#22c55e">Good</p></div>
+      </div>
+      <div class="dash-grid">
+        <div class="card dash-card"><div class="card-top"><span class="bold">Active Loans</span><button class="link-btn" onclick="navigate('myloans')">View all</button></div><div class="card-divider"></div><div id="dash-loans-list" class="dash-list"></div></div>
+        <div class="card dash-card"><div class="card-top"><span class="bold">Recent Transactions</span></div><div class="card-divider"></div><div id="dash-transactions" class="dash-list"></div></div>
+      </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section id="page-calculator" class="inner-page hidden">
+      <div class="page-header"><div><h1 class="page-title">Loan Calculator</h1><p class="muted">Estimate your monthly repayments</p></div></div>
+      <div class="calc-grid">
+        <div class="card calc-inputs">
+          <div class="card-top"><span class="bold">Loan Details</span></div>
+          <div class="card-divider"></div>
+          <div style="padding:20px">
+            <div class="form-group"><label class="form-label">Loan Amount (GHS)</label><input type="number" id="calc-amount" class="form-input" value="5000"/><input type="range" id="calc-amount-range" class="range-input" min="500" max="500000" step="500" value="5000"/></div>
+            <div class="form-group"><label class="form-label">Tenure (Months)</label><input type="number" id="calc-tenure" class="form-input" value="24"/><input type="range" id="calc-tenure-range" class="range-input" min="3" max="120" step="1" value="24"/></div>
+            <div class="form-group"><label class="form-label">Annual Interest Rate (%)</label><input type="number" id="calc-rate" class="form-input" value="24"/><input type="range" id="calc-rate-range" class="range-input" min="1" max="60" step="0.1" value="24"/></div>
+            <div class="form-group"><label class="form-label">Loan Type</label>
+              <select id="calc-type" class="form-input">
+                <option value="personal">Personal Loan (24%)</option>
+                <option value="home">Home Loan (18%)</option>
+                <option value="car">Car Loan (20%)</option>
+                <option value="education">Education Loan (16%)</option>
+                <option value="business">Business Loan (28%)</option>
+              </select>
+            </div>
+            <button class="btn-primary full-width" onclick="calculateEMI()">Calculate</button>
+          </div>
+        </div>
+        <div class="calc-results">
+          <div class="card" style="margin-bottom:16px"><div class="card-top"><span class="bold">Results</span></div><div class="card-divider"></div><div class="calc-result-grid"><div class="result-block"><p class="muted result-label">Monthly Payment</p><p class="result-value" id="res-emi">GHS 0</p></div><div class="result-block"><p class="muted result-label">Total Interest</p><p class="result-value" id="res-interest">GHS 0</p></div><div class="result-block"><p class="muted result-label">Total Payment</p><p class="result-value" id="res-total">GHS 0</p></div><div class="result-block"><p class="muted result-label">Principal</p><p class="result-value" id="res-principal">GHS 0</p></div></div></div>
+          <div class="card" style="margin-bottom:16px"><div class="card-top"><span class="bold">Principal vs Interest</span></div><div class="card-divider"></div><div style="padding:20px;max-width:220px;margin:0 auto"><canvas id="emi-pie-chart"></canvas></div></div>
+          <div class="card"><div class="card-top"><span class="bold">Repayment Schedule</span></div><div class="card-divider"></div><div style="padding:10px;overflow-x:auto"><table class="amort-table"><thead><tr><th>Month</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead><tbody id="amort-body"></tbody></table></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPLY -->
+    <section id="page-apply" class="inner-page hidden">
+      <div class="page-header"><div><h1 class="page-title">Apply for Loan</h1><p class="muted">Complete all steps to submit your application</p></div></div>
+      <div class="card apply-card">
+        <div class="progress-bar-wrap">
+          <div class="progress-steps">
+            <div class="progress-step active" data-step="1"><div class="step-circle">1</div><span>Personal</span></div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="2"><div class="step-circle">2</div><span>Loan</span></div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="3"><div class="step-circle">3</div><span>Income</span></div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="4"><div class="step-circle">4</div><span>Guarantors</span></div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="5"><div class="step-circle">5</div><span>Ghana Card</span></div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="6"><div class="step-circle">6</div><span>Review</span></div>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+
+        <!-- Step 1 -->
+        <div id="step-1" class="step-content">
+          <h3 class="step-title">Personal Details</h3>
+          <div class="form-row-2">
+            <div class="form-group"><label class="form-label">First Name</label><input type="text" id="app-fname" class="form-input" placeholder="Johnson"/></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="app-lname" class="form-input" placeholder="Ankamah"/></div>
+          </div>
+          <div class="form-group"><label class="form-label">Date of Birth</label><input type="date" id="app-dob" class="form-input"/></div>
+          <div class="form-group"><label class="form-label">Phone Number</label><div class="phone-input-wrap"><span class="phone-flag">+233</span><input type="tel" id="app-phone" class="form-input phone-input" placeholder="024 000 0000"/></div></div>
+          <div class="form-group"><label class="form-label">Residential Address</label><input type="text" id="app-address" class="form-input" placeholder="Osu, Accra, Greater Accra Region"/></div>
+          <div class="form-group"><label class="form-label">Ghana Card Number</label><input type="text" id="app-id" class="form-input" placeholder="GHA-000000000-0"/></div>
+          <div class="form-group"><label class="form-label">TIN Number <span class="muted">(for business loans)</span></label><input type="text" id="app-tin" class="form-input" placeholder="C0000000000"/></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="step-2" class="step-content hidden">
+          <h3 class="step-title">Loan Details</h3>
+          <div class="form-group"><label class="form-label">Loan Type</label>
+            <select id="app-loan-type" class="form-input">
+              <option value="">Select loan type</option>
+              <option value="personal">Personal Loan</option>
+              <option value="home">Home Loan</option>
+              <option value="car">Car Loan</option>
+              <option value="education">Education Loan</option>
+              <option value="business">Business Loan</option>
+              <option value="emergency">Emergency Loan</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Loan Amount (GHS)</label><input type="number" id="app-amount" class="form-input" placeholder="5000"/></div>
+          <div class="form-group"><label class="form-label">Tenure (Months)</label><input type="number" id="app-tenure" class="form-input" placeholder="24"/></div>
+          <div class="form-group"><label class="form-label">Purpose</label>
+            <select id="app-purpose" class="form-input">
+              <option value="">Select purpose</option>
+              <option>Business capital / trading stock</option>
+              <option>House rent</option>
+              <option>School fees</option>
+              <option>Medical bills</option>
+              <option>Vehicle purchase</option>
+              <option>Home renovation</option>
+              <option>Farming / Agriculture</option>
+              <option>Funeral expenses</option>
+              <option>Travel / Visa fees</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Preferred Disbursement Method</label>
+            <select id="app-disbursement" class="form-input">
+              <option value="">Select method</option>
+              <option value="mtn">MTN Mobile Money</option>
+              <option value="vodafone">Vodafone Cash</option>
+              <option value="airteltigo">AirtelTigo Money</option>
+              <option value="bank">Bank Transfer</option>
+              <option value="branch">Cash at Branch</option>
+            </select>
+          </div>
+          <div id="disbursement-detail-wrap" class="form-group hidden">
+            <label class="form-label" id="disbursement-detail-label">MoMo / Account Number</label>
+            <input type="text" id="app-disbursement-detail" class="form-input" placeholder="e.g. 0244000000"/>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div id="step-3" class="step-content hidden">
+          <h3 class="step-title">Income &amp; Employment</h3>
+          <div class="form-group"><label class="form-label">Employment Status</label>
+            <select id="app-employment" class="form-input">
+              <option value="">Select status</option>
+              <option>Government worker (Civil Service)</option>
+              <option>Private sector employee</option>
+              <option>Self-employed / Trader</option>
+              <option>Business owner</option>
+              <option>Farmer</option>
+              <option>Freelancer / Contractor</option>
+              <option>Retired</option>
+              <option>Unemployed</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Employer / Business Name</label><input type="text" id="app-employer" class="form-input" placeholder="e.g. Ghana Education Service, Kantanka Group"/></div>
+          <div class="form-group"><label class="form-label">Monthly Income (GHS)</label><input type="number" id="app-income" class="form-input" placeholder="2500"/></div>
+          <div class="form-group"><label class="form-label">Years Employed / In Business</label><input type="number" id="app-years" class="form-input" placeholder="3"/></div>
+          <div class="form-group"><label class="form-label">Other Monthly Obligations (GHS)</label><input type="number" id="app-obligations" class="form-input" placeholder="0"/></div>
+        </div>
+
+        <!-- Step 4 — Guarantors -->
+        <div id="step-4" class="step-content hidden">
+          <h3 class="step-title">Guarantor Details</h3>
+          <p class="muted" style="margin-bottom:20px;font-size:13px">Provide details of two guarantors. They must be Ghanaian citizens with stable income who are fully aware they are co-signing this loan.</p>
+
+          <div class="guarantor-block card" style="margin-bottom:16px">
+            <div class="guarantor-block-header">
+              <span class="bold" style="font-size:14px">Guarantor 1</span>
+              <button class="btn-secondary" onclick="pickContact(1)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Pick from Contacts
+              </button>
+            </div>
+            <div style="padding:14px">
+              <div class="form-group"><label class="form-label">Full Name</label><input type="text" id="guar1-fname" class="form-input" placeholder="e.g. Ama Boateng"/></div>
+              <div class="form-group"><label class="form-label">Phone Number</label>
+                <div class="phone-input-wrap"><span class="phone-flag">+233</span><input type="tel" id="guar1-phone" class="form-input phone-input" placeholder="020 000 0000"/></div>
+              </div>
+              <div class="form-group"><label class="form-label">Role / Relationship to You</label>
+                <select id="guar1-relation" class="form-input">
+                  <option value="">Select relationship</option>
+                  <option>Spouse</option><option>Parent</option><option>Sibling</option>
+                  <option>Friend</option><option>Colleague</option><option>Employer</option>
+                  <option>Other family member</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="guarantor-block card">
+            <div class="guarantor-block-header">
+              <span class="bold" style="font-size:14px">Guarantor 2</span>
+              <button class="btn-secondary" onclick="pickContact(2)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Pick from Contacts
+              </button>
+            </div>
+            <div style="padding:14px">
+              <div class="form-group"><label class="form-label">Full Name</label><input type="text" id="guar2-fname" class="form-input" placeholder="e.g. Kwesi Amponsah"/></div>
+              <div class="form-group"><label class="form-label">Phone Number</label>
+                <div class="phone-input-wrap"><span class="phone-flag">+233</span><input type="tel" id="guar2-phone" class="form-input phone-input" placeholder="055 000 0000"/></div>
+              </div>
+              <div class="form-group"><label class="form-label">Role / Relationship to You</label>
+                <select id="guar2-relation" class="form-input">
+                  <option value="">Select relationship</option>
+                  <option>Spouse</option><option>Parent</option><option>Sibling</option>
+                  <option>Friend</option><option>Colleague</option><option>Employer</option>
+                  <option>Other family member</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="guarantor-notice card" style="margin-top:16px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="icon-wrapper"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+              <p style="font-size:12px;color:var(--text)">By submitting, both guarantors agree to be legally responsible for this loan if you default. Ensure they are fully aware.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 — Ghana Card -->
+        <div id="step-5" class="step-content hidden">
+          <h3 class="step-title">Ghana Card Verification</h3>
+          <p class="muted" style="margin-bottom:20px;font-size:13px">Upload clear photos of your Ghana National ID Card — both front and back. We verify with the NIA database.</p>
+          <div id="nia-verify-status" class="nia-status hidden"></div>
+          <div class="ghana-card-slots">
+            <div class="id-slot" id="slot-front">
+              <div class="id-slot-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Front of Ghana Card</div>
+              <div class="id-preview-wrap" id="preview-front-wrap" style="display:none"><img id="preview-front" class="id-preview-img" src="" alt="Front"/><button class="id-retake-btn" onclick="retakeSlot('front')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>Retake</button></div>
+              <div class="id-upload-area" id="upload-area-front">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
+                <p class="muted" style="font-size:12px;margin:8px 0 12px">Front side of Ghana Card</p>
+                <div class="id-action-btns">
+                  <button class="btn-secondary" onclick="document.getElementById('file-front').click()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Upload</button>
+                  <button class="btn-primary" onclick="document.getElementById('camera-front').click()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Camera</button>
+                </div>
+                <input type="file" id="file-front" accept="image/*" style="display:none" onchange="handleSlotFile(event,'front')"/>
+                <input type="file" id="camera-front" accept="image/*" capture="environment" style="display:none" onchange="handleSlotFile(event,'front')"/>
+              </div>
+            </div>
+            <div class="id-slot" id="slot-back">
+              <div class="id-slot-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Back of Ghana Card</div>
+              <div class="id-preview-wrap" id="preview-back-wrap" style="display:none"><img id="preview-back" class="id-preview-img" src="" alt="Back"/><button class="id-retake-btn" onclick="retakeSlot('back')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>Retake</button></div>
+              <div class="id-upload-area" id="upload-area-back">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8e8e8e" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
+                <p class="muted" style="font-size:12px;margin:8px 0 12px">Back side of Ghana Card</p>
+                <div class="id-action-btns">
+                  <button class="btn-secondary" onclick="document.getElementById('file-back').click()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Upload</button>
+                  <button class="btn-primary" onclick="document.getElementById('camera-back').click()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Camera</button>
+                </div>
+                <input type="file" id="file-back" accept="image/*" style="display:none" onchange="handleSlotFile(event,'back')"/>
+                <input type="file" id="camera-back" accept="image/*" capture="environment" style="display:none" onchange="handleSlotFile(event,'back')"/>
+              </div>
+            </div>
+          </div>
+          <div id="ghana-card-status" class="ghana-card-status"></div>
+          <div id="verify-btn-wrap" class="hidden" style="margin-top:14px">
+            <button class="btn-primary" onclick="simulateNIAVerification()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Verify with NIA
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div id="step-6" class="step-content hidden">
+          <h3 class="step-title">Review &amp; Submit</h3>
+          <div id="review-content" class="review-content"></div>
+          <label class="checkbox-label" style="margin-top:20px"><input type="checkbox" id="app-agree"/> I agree to SikafroLoan's Terms &amp; Conditions and Privacy Policy</label>
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-secondary" id="btn-prev" onclick="prevStep()" style="display:none">Previous</button>
+          <button class="btn-primary" id="btn-next" onclick="nextStep()">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MY LOANS -->
+    <section id="page-myloans" class="inner-page hidden">
+      <div class="page-header"><div><h1 class="page-title">My Loans</h1><p class="muted">All your loan accounts</p></div></div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="pending">Pending</button>
+        <button class="filter-btn" data-filter="approved">Approved</button>
+        <button class="filter-btn" data-filter="disbursed">Disbursed</button>
+        <button class="filter-btn" data-filter="closed">Closed</button>
+        <button class="filter-btn" data-filter="rejected">Rejected</button>
+      </div>
+      <div id="loans-list" class="loans-list"></div>
+    </section>
+
+    <!-- PAYMENTS -->
+    <section id="page-payments" class="inner-page hidden">
+      <div class="page-header"><div><h1 class="page-title">Payments</h1><p class="muted">Make and track your repayments</p></div></div>
+      <div class="pay-grid">
+        <div class="card">
+          <div class="card-top"><span class="bold">Make a Payment</span></div>
+          <div class="card-divider"></div>
+          <div style="padding:20px">
+            <div class="form-group"><label class="form-label">Select Loan</label><select id="pay-loan-select" class="form-input"></select></div>
+            <div class="form-group"><label class="form-label">Payment Type</label><select id="pay-type" class="form-input"><option value="emi">Regular Monthly Payment</option><option value="partial">Partial Payment</option><option value="full">Full Settlement</option></select></div>
+            <div class="form-group"><label class="form-label">Amount (GHS)</label><input type="number" id="pay-amount" class="form-input" placeholder="0.00"/></div>
+            <div class="form-group"><label class="form-label">Payment Method</label>
+              <select id="pay-method" class="form-input">
+                <option>MTN Mobile Money</option><option>Vodafone Cash</option>
+                <option>AirtelTigo Money</option><option>Ghana Interbank (GIP)</option>
+                <option>Bank Transfer</option><option>Visa / Mastercard</option>
+              </select>
+            </div>
+            <button class="btn-primary full-width" onclick="makePayment()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Confirm Payment</button>
+          </div>
+        </div>
+        <div class="card"><div class="card-top"><span class="bold">Payment History</span></div><div class="card-divider"></div><div id="payment-history" style="padding:10px"></div></div>
+      </div>
+    </section>
+
+    <!-- ELIGIBILITY -->
+    <section id="page-eligibility" class="inner-page hidden">
+      <div class="page-header"><div><h1 class="page-title">Eligibility Checker</h1><p class="muted">Check your pre-qualification instantly</p></div></div>
+      <div class="elig-grid">
+        <div class="card"><div class="card-top"><span class="bold">Quick Check</span></div><div class="card-divider"></div>
+          <div style="padding:20px">
+            <div class="form-group"><label class="form-label">Monthly Income (GHS)</label><input type="number" id="elig-income" class="form-input" placeholder="2500"/></div>
+            <div class="form-group"><label class="form-label">Monthly Expenses (GHS)</label><input type="number" id="elig-expenses" class="form-input" placeholder="800"/></div>
+            <div class="form-group"><label class="form-label">Existing Loan Payments (GHS)</label><input type="number" id="elig-existing" class="form-input" placeholder="0"/></div>
+            <div class="form-group"><label class="form-label">Credit Score (approx.)</label><input type="number" id="elig-credit" class="form-input" placeholder="700" min="300" max="850"/></div>
+            <div class="form-group"><label class="form-label">Desired Loan Amount (GHS)</label><input type="number" id="elig-desired" class="form-input" placeholder="10000"/></div>
+            <button class="btn-primary full-width" onclick="checkEligibility()">Check Eligibility</button>
+          </div>
+        </div>
+        <div class="card" id="elig-result-card" style="display:none"><div class="card-top"><span class="bold">Result</span></div><div class="card-divider"></div><div id="elig-result" style="padding:20px"></div></div>
+      </div>
+    </section>
+
+    <!-- REFERRAL -->
+    <section id="page-referral" class="inner-page hidden">
+      <div class="page-header"><div><h1 class="page-title">Refer &amp; Earn</h1><p class="muted">Share SikafroLoan and earn rewards</p></div></div>
+      <div class="referral-grid">
+        <div class="card">
+          <div class="card-top"><span class="bold">Your Referral Code</span></div>
+          <div class="card-divider"></div>
+          <div style="padding:20px">
+            <div class="referral-code-box">
+              <p class="muted" style="font-size:12px;margin-bottom:6px">Your unique code</p>
+              <p class="referral-code" id="user-referral-code">SKF-LOADING</p>
+              <button class="btn-secondary" onclick="copyReferralCode()" style="margin-top:12px">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy Code
+              </button>
+            </div>
+            <div class="referral-how">
+              <p class="bold" style="font-size:13px;margin-bottom:12px">How it works</p>
+              <div class="ref-step"><div class="ref-num">1</div><p class="muted" style="font-size:13px">Share your code with friends and family</p></div>
+              <div class="ref-step"><div class="ref-num">2</div><p class="muted" style="font-size:13px">They register with your code and take their first loan</p></div>
+              <div class="ref-step"><div class="ref-num">3</div><p class="muted" style="font-size:13px">You earn GHS 50 credit per successful referral</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="bold">Referral Summary</span></div>
+          <div class="card-divider"></div>
+          <div style="padding:20px">
+            <div class="ref-stats-grid">
+              <div class="ref-stat-box"><p class="muted" style="font-size:12px">Total Referred</p><p class="ref-stat-val" id="ref-total">0</p></div>
+              <div class="ref-stat-box"><p class="muted" style="font-size:12px">Successful</p><p class="ref-stat-val" id="ref-success">0</p></div>
+              <div class="ref-stat-box"><p class="muted" style="font-size:12px">Earnings</p><p class="ref-stat-val" id="ref-earnings">GHS 0</p></div>
+              <div class="ref-stat-box"><p class="muted" style="font-size:12px">Pending</p><p class="ref-stat-val" id="ref-pending">0</p></div>
+            </div>
+            <div class="card-divider" style="margin:16px 0"></div>
+            <p class="bold" style="font-size:13px;margin-bottom:10px">Referral History</p>
+            <div id="referral-history"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="page-profile" class="inner-page hidden">
+      <div class="page-header"><div><h1 class="page-title">Profile &amp; Settings</h1><p class="muted">Manage your account</p></div></div>
+      <div class="profile-grid">
+        <div class="card"><div class="card-top"><span class="bold">Personal Information</span></div><div class="card-divider"></div>
+          <div style="padding:20px">
+            <div class="profile-avatar-wrap"><div class="profile-avatar" id="profile-avatar-display">K</div><div><p class="bold" id="profile-fullname">Kofi Mensah</p><p class="muted" id="profile-email-display">kofi@email.com</p></div></div>
+            <div class="form-row-2" style="margin-top:20px">
+              <div class="form-group"><label class="form-label">First Name</label><input type="text" id="prof-fname" class="form-input" placeholder="Johnson"/></div>
+              <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="prof-lname" class="form-input" placeholder="Ankamah"/></div>
+            </div>
+            <div class="form-group"><label class="form-label">Phone Number</label><div class="phone-input-wrap"><span class="phone-flag">+233</span><input type="tel" id="prof-phone" class="form-input phone-input" placeholder="024 000 0000"/></div></div>
+            <div class="form-group"><label class="form-label">Residential Address</label><input type="text" id="prof-address" class="form-input" placeholder="Osu, Accra"/></div>
+            <button class="btn-primary" onclick="saveProfile()">Save Changes</button>
+          </div>
+        </div>
+        <div class="card"><div class="card-top"><span class="bold">Security</span></div><div class="card-divider"></div>
+          <div style="padding:20px">
+            <div class="form-group"><label class="form-label">Current Password</label><input type="password" id="sec-current" class="form-input" placeholder="Enter current password"/></div>
+            <div class="form-group"><label class="form-label">New Password</label><input type="password" id="sec-new" class="form-input" placeholder="Min. 8 characters"/></div>
+            <div class="form-group"><label class="form-label">Confirm New Password</label><input type="password" id="sec-confirm" class="form-input" placeholder="Repeat new password"/></div>
+            <button class="btn-primary" onclick="changePassword()">Update Password</button>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <div class="card-top"><span class="bold">Payment Accounts</span><button class="btn-secondary" onclick="openAddAccountModal()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Account</button></div>
+        <div class="card-divider"></div>
+        <div id="payment-accounts-list" style="padding:10px"></div>
+      </div>
+    </section>
+
+    <!-- SUPPORT -->
+    <section id="page-support" class="inner-page hidden">
+      <div class="page-header"><div><h1 class="page-title">Support</h1><p class="muted">Chat with our team — we're here to help</p></div></div>
+      <div class="support-grid">
+        <div class="card support-info-card">
+          <div class="card-top"><span class="bold">Contact Options</span></div>
+          <div class="card-divider"></div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+            <div class="contact-item"><div class="icon-wrapper"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12z"/></svg></div><div><p class="bold" style="font-size:13px">Call Us</p><p class="muted" style="font-size:12px">0800-SIKAFRO (Free)</p></div></div>
+            <div class="contact-item"><div class="icon-wrapper"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><p class="bold" style="font-size:13px">Email</p><p class="muted" style="font-size:12px">support@sikafroloan.com.gh</p></div></div>
+            <div class="contact-item"><div class="icon-wrapper"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><p class="bold" style="font-size:13px">Branch</p><p class="muted" style="font-size:12px">Ring Road Central, Accra</p></div></div>
+            <div class="contact-item"><div class="icon-wrapper"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><p class="bold" style="font-size:13px">Hours</p><p class="muted" style="font-size:12px">Mon–Fri 8am–6pm · Sat 9am–1pm</p></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div style="padding:16px">
+            <p class="bold" style="font-size:13px;margin-bottom:10px">Common Topics</p>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <button class="faq-btn" onclick="injectFAQ('How do I apply for a loan?')">How do I apply for a loan?</button>
+              <button class="faq-btn" onclick="injectFAQ('What are the interest rates?')">What are the interest rates?</button>
+              <button class="faq-btn" onclick="injectFAQ('How long does approval take?')">How long does approval take?</button>
+              <button class="faq-btn" onclick="injectFAQ('How do I make a repayment?')">How do I make a repayment?</button>
+              <button class="faq-btn" onclick="injectFAQ('What documents do I need?')">What documents do I need?</button>
+              <button class="faq-btn" onclick="injectFAQ('What is a guarantor?')">What is a guarantor?</button>
+            </div>
+          </div>
+        </div>
+        <div class="card chat-card">
+          <div class="card-top">
+            <div style="display:flex;align-items:center;gap:10px"><div class="agent-avatar">SL</div><div><p class="bold" style="font-size:13px">SikafroLoan Support</p><p style="font-size:11px;color:var(--success)">Online now</p></div></div>
+          </div>
+          <div class="card-divider"></div>
+          <div id="chat-messages" class="chat-messages">
+            <div class="chat-msg agent"><div class="chat-bubble">Akwaaba! Welcome to SikafroLoan Support. How can we help you today?</div><span class="chat-time">Now</span></div>
+          </div>
+          <div class="card-divider"></div>
+          <div class="chat-input-area">
+            <input type="text" id="chat-input" class="form-input" placeholder="Type your message..." onkeydown="if(event.key==='Enter') sendChatMessage()"/>
+            <button class="btn-primary" onclick="sendChatMessage()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Send</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- LOAN DETAIL MODAL -->
+<div id="loan-modal" class="modal-overlay hidden">
+  <div class="modal-card card">
+    <div class="modal-header"><span class="bold">Loan Details</span><button class="icon-btn" onclick="closeLoanModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="card-divider"></div>
+    <div id="modal-content" style="padding:20px"></div>
+    <div style="padding:0 20px 20px;display:flex;gap:10px">
+      <button class="btn-primary" onclick="downloadStatement()">Download Statement</button>
+      <button class="btn-secondary" onclick="closeLoanModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- DISBURSEMENT MODAL -->
+<div id="disburse-modal" class="modal-overlay hidden">
+  <div class="modal-card card">
+    <div class="modal-header"><span class="bold">Confirm Disbursement</span><button class="icon-btn" onclick="closeDisbursementModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="card-divider"></div>
+    <div style="padding:20px">
+      <p class="muted" style="font-size:13px;margin-bottom:20px">Your loan has been approved. Choose how you want to receive the funds.</p>
+      <div class="form-group"><label class="form-label">Disbursement Method</label>
+        <select id="disburse-method" class="form-input" onchange="renderDisbursementDetail()">
+          <option value="">Select method</option>
+          <option value="mtn">MTN Mobile Money</option>
+          <option value="vodafone">Vodafone Cash</option>
+          <option value="airteltigo">AirtelTigo Money</option>
+          <option value="bank">Bank Transfer</option>
+          <option value="branch">Cash at Branch (Ring Road, Accra)</option>
+        </select>
+      </div>
+      <div id="disburse-detail-wrap" class="hidden">
+        <div class="form-group"><label class="form-label" id="disburse-detail-label">MoMo / Account Number</label><input type="text" id="disburse-detail" class="form-input" placeholder="e.g. 0244000000"/></div>
+        <div class="form-group"><label class="form-label">Account Name</label><input type="text" id="disburse-name" class="form-input" placeholder="Ankamah Johnson"/></div>
+      </div>
+      <button class="btn-primary full-width" onclick="confirmDisbursement()">Confirm &amp; Receive Funds</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD PAYMENT ACCOUNT MODAL -->
+<div id="account-modal" class="modal-overlay hidden">
+  <div class="modal-card card">
+    <div class="modal-header"><span class="bold">Add Payment Account</span><button class="icon-btn" onclick="closeAccountModal()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <div class="card-divider"></div>
+    <div style="padding:20px">
+      <div class="form-group"><label class="form-label">Account Type</label>
+        <select id="acct-type" class="form-input" onchange="renderAccountFields()">
+          <option value="">Select account type</option>
+          <option value="momo">Mobile Money (MTN / Vodafone / AirtelTigo)</option>
+          <option value="bank">Bank Account</option>
+          <option value="visa">Visa / Mastercard</option>
+          <option value="ghipss">Ghana Interbank (GhIPSS)</option>
+        </select>
+      </div>
+      <div id="account-fields"></div>
+      <button class="btn-primary full-width" onclick="savePaymentAccount()" style="margin-top:8px">Save Account</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
