@@ -2,7 +2,7 @@
 A full-featured fintech loan web application built for the Ghanaian market. No frameworks, no backend — pure HTML, CSS and JavaScript.
 
 ## Live Demo
-[View on Netlify](#) · Demo login: `demo@sikafroloan.com.gh` / `demo1234`
+View Live 🌐 https://ankamahjohnson.github.io/sikafroLoan/
 
 ## Features
 
