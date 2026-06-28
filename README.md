@@ -33,4 +33,7 @@ View Live 🌐 https://ankamahjohnson.github.io/sikafroLoan/
 | Storage | localStorage / sessionStorage |
 | Fonts | Inter (Google Fonts) |
 
-## Project Structure
+---
+
+## 📝
+Made with ❤️ as a frontend practice project.
