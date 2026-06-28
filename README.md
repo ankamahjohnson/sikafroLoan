@@ -26,7 +26,7 @@ View Live 🌐 https://ankamahjohnson.github.io/sikafroLoan/
 | Layer | Technology |
 |---|---|
 | Structure | HTML5 |
-| Styling | CSS3 (custom design system, CSS variables) |
+| Styling | CSS3 |
 | Logic | Vanilla JavaScript (ES6+) |
 | Charts | Chart.js |
 | PDF Export | jsPDF + AutoTable |
