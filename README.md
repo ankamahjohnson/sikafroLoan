@@ -1,5 +1,5 @@
 # sikafroLoan
-A full-featured fintech loan web application built for the Ghanaian market. No frameworks, no backend — pure HTML, CSS and JavaScript.
+A full-featured fintech loan web application built for the Ghanaian market. No frameworks, no backend — just pure HTML, CSS and JavaScript.
 
 ## Live Demo
 View Live 🌐 https://ankamahjohnson.github.io/sikafroLoan/
