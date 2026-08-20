@@ -1,5 +1,5 @@
 # sikafroLoan
-A full-featured fintech loan web app built for the Ghanaian market. No frameworks, no backend — just pure HTML, CSS and JavaScript.
+A full-featured fintech loan web app built for the Ghanaian market. No frameworks, no backend — just pure HTML, CSS & JavaScript.
 
 ## Live Demo
 View Live 🌐 https://ankamahjohnson.github.io/sikafroLoan/
@@ -8,7 +8,7 @@ View Live 🌐 https://ankamahjohnson.github.io/sikafroLoan/
 
 - **Landing page** — Hero, loan products, testimonials, how it works, CTA
 - **Authentication** — Register with OTP phone verification, login, forgot password
-- **Loan Application** — 6-step wizard with personal details, income, two guarantors, Ghana Card upload and NIA verification
+- **Loan Application** — 6-step wizard with personal details, income, two guarantors, Ghana Card upload & NIA verification
 - **Dashboard** — Total borrowed, outstanding balance, next EMI, credit score
 - **My Loans** — Filter by status, loan details modal, PDF statement download
 - **Payments** — MTN MoMo, Vodafone Cash, AirtelTigo, bank transfer, payment history
